@@ -4,27 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { 
-  PlayCircle, 
-  ShieldCheck, 
-  ClockAlert, 
-  Calculator, 
-  Scissors, 
-  CheckSquare, 
-  TrendingUp, 
-  FileSpreadsheet, 
-  FileText, 
-  Star, 
-  Check, 
-  X, 
-  CheckCircle,
-  Gift,
-  ChevronRight,
-  BookOpen,
-  Wrench,
-  Lock,
-  Info
-} from 'lucide-react';
+import { CirclePlay as PlayCircle, ShieldCheck, ClockAlert, Calculator, Scissors, SquareCheck as CheckSquare, TrendingUp, FileSpreadsheet, FileText, Star, Check, X, CircleCheck as CheckCircle, Gift, ChevronRight, BookOpen, Wrench, Lock, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
