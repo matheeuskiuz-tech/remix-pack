@@ -22,9 +22,9 @@
   }
 }
 
-wistia-player[media-id='ent6sqp83n']:not(:defined) { 
-  background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/ent6sqp83n/swatch'); 
-  display: block; 
-  filter: blur(5px); 
-  padding-top: 177.78%; 
+wistia-player[media-id='3zcl2t69mn']:not(:defined) {
+  background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3zcl2t69mn/swatch');
+  display: block;
+  filter: blur(5px);
+  padding-top: 177.78%;
 }

@@ -121,21 +121,19 @@ export default function App() {
           </motion.p>
 
           {/* VSL Video Area */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
             className="max-w-[400px] mx-auto mb-8 rounded-2xl overflow-hidden border-2 border-blue-600/50 shadow-2xl shadow-blue-500/10 aspect-[9/16]"
           >
-            <div 
+            <div
               className="w-full h-full bg-black"
-              dangerouslySetInnerHTML={{ 
-                __html: `<wistia-player 
-                  media-id="ent6sqp83n" 
-                  aspect="0.5625" 
-                  play-button="true"
-                  controls-visible-on-load="true"
-                ></wistia-player>` 
+              dangerouslySetInnerHTML={{
+                __html: `<wistia-player
+                  media-id="3zcl2t69mn"
+                  aspect="0.5625"
+                ></wistia-player>`
               }}
             />
           </motion.div>
