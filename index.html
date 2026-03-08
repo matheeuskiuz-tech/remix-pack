@@ -19,15 +19,22 @@
       window._wq.push({
         id: "3zcl2t69mn",
         onReady: function(video) {
+          video.bind('resume', function() {
+            video.play();
+          });
+          video.bind('beforeseek', function() {
+            return false;
+          });
+          video.bind('pause', function() {
+            setTimeout(function() {
+              video.play();
+            }, 100);
+          });
           video.playbar(false);
           video.volumeControl(false);
           video.fullscreenButton(false);
           video.settingsControl(false);
           video.captionsControl(false);
-          if (video.plugin) {
-            video.plugin("resumable", { on: false });
-            video.plugin("miniPlayer", { on: false });
-          }
           video.play();
         }
       });
