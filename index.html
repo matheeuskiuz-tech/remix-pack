@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script src="https://fast.wistia.com/embed/ent6sqp83n.js" async type="module"></script>
+    <script>
+      window._wq = window._wq || [];
+      window._wq.push({ 
+        id: "ent6sqp83n", 
+        onReady: function(video) {
+          video.controls(false);
+          video.playbar(false);
+          video.volumeControl(false);
+          video.fullscreenButton(false);
+          video.settingsControl(false);
+          video.captionsControl(false);
+          video.playButton(false);
+          // Desativa o miniplayer (player flutuante ao rolar a página)
+          if (video.plugin) {
+            video.plugin("resumable", { on: false });
+            video.plugin("miniPlayer", { on: false });
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
