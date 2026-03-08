@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CirclePlay as PlayCircle, ShieldCheck, ClockAlert, Calculator, Scissors, SquareCheck as CheckSquare, TrendingUp, FileSpreadsheet, FileText, Star, Check, X, CircleCheck as CheckCircle, Gift, ChevronRight, BookOpen, Wrench, Lock, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -13,6 +13,62 @@ export default function App() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentNotification, setCurrentNotification] = useState(0);
   const [showNotification, setShowNotification] = useState(false);
+  const videoRef = useRef<any>(null);
+
+  useEffect(() => {
+    const loadWistiaScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://fast.wistia.com/player.js';
+      script.async = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        window._wq = window._wq || [];
+        window._wq.push({
+          id: "3zcl2t69mn",
+          onReady: function(video: any) {
+            videoRef.current = video;
+
+            // Disable all pause mechanisms
+            video.unbind('pause');
+            video.unbind('stop');
+            video.unbind('beforeseek');
+
+            // Remove plugins that might pause
+            try {
+              if (video.plugin) {
+                video.plugin('resumable', { on: false });
+              }
+            } catch (e) {}
+
+            // UI controls off
+            video.playbar(false);
+            video.volumeControl(false);
+            video.fullscreenButton(false);
+            video.settingsControl(false);
+            video.captionsControl(false);
+
+            // Start playing
+            video.play();
+
+            // Force constant playback check
+            const playbackCheck = setInterval(() => {
+              try {
+                if (video.state && video.state() !== 'playing') {
+                  video.play();
+                }
+              } catch (e) {}
+            }, 300);
+
+            // Cleanup on unload
+            return () => clearInterval(playbackCheck);
+          }
+        });
+      };
+    };
+
+    loadWistiaScript();
+  }, []);
 
   const handlePurchase = () => {
     setIsCheckoutLoading(true);
@@ -108,14 +164,11 @@ export default function App() {
             className="max-w-[400px] mx-auto mb-8 rounded-2xl overflow-hidden border-2 border-blue-600/50 shadow-2xl shadow-blue-500/10 aspect-[9/16]"
           >
             <div
-              className="w-full h-full bg-black"
-              dangerouslySetInnerHTML={{
-                __html: `<wistia-player
-                  media-id="3zcl2t69mn"
-                  aspect="0.5625"
-                ></wistia-player>`
-              }}
-            />
+              className="w-full h-full bg-black flex items-center justify-center"
+              id="wistia-container"
+            >
+              <wistia-player media-id="3zcl2t69mn" aspect="0.5625"></wistia-player>
+            </div>
           </motion.div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">

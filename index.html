@@ -4,49 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Google AI Studio App</title>
-    <script src="https://fast.wistia.com/player.js" async></script>
-    <style>
-      wistia-player[media-id='3zcl2t69mn']:not(:defined) {
-        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3zcl2t69mn/swatch');
-        display: block;
-        filter: blur(5px);
-        padding-top: 177.78%;
-      }
-    </style>
-    <script>
-      window._wq = window._wq || [];
-      window._wq.push({
-        id: "3zcl2t69mn",
-        onReady: function(video) {
-          // Disable all plugins that might pause the video
-          if (video.plugin) {
-            video.plugin("resumable", { on: false });
-            video.plugin("miniPlayer", { on: false });
-            video.plugin("chapters", { on: false });
-          }
-
-          // Remove all pause triggers
-          video.unbind("pause");
-          video.unbind("resume");
-          video.unbind("stop");
-
-          // Force continuous playback
-          var playCheck = setInterval(function() {
-            if (video.state() !== "playing") {
-              video.play();
-            }
-          }, 500);
-
-          // UI configuration
-          video.playbar(false);
-          video.volumeControl(false);
-          video.fullscreenButton(false);
-          video.settingsControl(false);
-          video.captionsControl(false);
-          video.play();
-        }
-      });
-    </script>
   </head>
   <body>
     <div id="root"></div>
